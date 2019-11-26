@@ -19,6 +19,7 @@ public class HomeController {
 
     /**
      * Redirect de port application to swagger ui
+     *
      * @return ModalAndView
      */
     @GetMapping("/")
