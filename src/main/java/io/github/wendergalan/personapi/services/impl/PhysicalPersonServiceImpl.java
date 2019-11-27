@@ -2,7 +2,10 @@ package io.github.wendergalan.personapi.services.impl;
 
 import io.github.wendergalan.personapi.controllers.PhysicalPersonController;
 import io.github.wendergalan.personapi.helper.Helper;
+import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
+import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
 import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.model.mappers.PhysicalPersonMapper;
 import io.github.wendergalan.personapi.repositories.PhysicalPersonRepository;
 import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +34,16 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
     }
 
     @Override
-    public ResponseEntity saveV1(PhysicalPerson physicalPerson, BindingResult result) {
+    public ResponseEntity saveV1(PhysicalPersonDTOV1 physicalPersonDtoV1, BindingResult result) {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(Helper.criarListaDeErrosDaValidacao(result.getAllErrors()));
+
+        PhysicalPerson physicalPerson = PhysicalPersonMapper.INSTANCE.physicalPersonDTOV1ToPhysicalPerson(physicalPersonDtoV1);
 
         physicalPersonRepository.save(physicalPerson);
 
         // Add HATEOAS
-        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).saveV1(physicalPerson, null)).withSelfRel().withType(HttpMethod.POST.toString()));
+        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).saveV1(physicalPersonDtoV1, null)).withSelfRel().withType(HttpMethod.POST.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).deleteById(physicalPerson.getId())).withRel("delete").withType(HttpMethod.DELETE.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).getById(physicalPerson.getId())).withRel("details").withType(HttpMethod.GET.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).findAllPeople()).withRel("find-all").withType(HttpMethod.GET.toString()));
@@ -47,14 +52,16 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
     }
 
     @Override
-    public ResponseEntity saveV2(PhysicalPerson physicalPerson, BindingResult result) {
+    public ResponseEntity saveV2(PhysicalPersonDTOV2 physicalPersonDtoV2, BindingResult result) {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(Helper.criarListaDeErrosDaValidacao(result.getAllErrors()));
+
+        PhysicalPerson physicalPerson = PhysicalPersonMapper.INSTANCE.physicalPersonDTOV2PhysicalPerson(physicalPersonDtoV2);
 
         physicalPersonRepository.save(physicalPerson);
 
         // Add HATEOAS
-        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).saveV2(physicalPerson, null)).withSelfRel().withType(HttpMethod.POST.toString()));
+        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).saveV2(physicalPersonDtoV2, null)).withSelfRel().withType(HttpMethod.POST.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).deleteById(physicalPerson.getId())).withRel("delete").withType(HttpMethod.DELETE.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).getById(physicalPerson.getId())).withRel("details").withType(HttpMethod.GET.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).findAllPeople()).withRel("find-all").withType(HttpMethod.GET.toString()));

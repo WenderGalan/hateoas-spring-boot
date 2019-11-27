@@ -43,7 +43,6 @@ public class Person extends RepresentationModel {
 
     @Column(name = "address", length = 200)
     @Length(max = 200)
-    @NotNull
     private String address;
 
     @Column(name = "nationality", length = 50)

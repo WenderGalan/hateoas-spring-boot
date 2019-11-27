@@ -1,5 +1,7 @@
 package io.github.wendergalan.personapi.services;
 
+import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
+import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
 import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -20,25 +22,25 @@ public interface PhysicalPersonService {
     /**
      * Save v 1 response entity.
      *
-     * @param physicalPerson the physical person
-     * @param result       the result
+     * @param physicalPersonDtoV1 the physical person
+     * @param result              the result
      * @return the response entity
      */
-    ResponseEntity saveV1(PhysicalPerson physicalPerson, BindingResult result);
+    ResponseEntity saveV1(PhysicalPersonDTOV1 physicalPersonDtoV1, BindingResult result);
 
     /**
      * Save v 2 response entity.
      *
-     * @param physicalPerson the physical person
-     * @param result       the result
+     * @param physicalPersonDtoV2 the physical person
+     * @param result              the result
      * @return the response entity
      */
-    ResponseEntity saveV2(PhysicalPerson physicalPerson, BindingResult result);
+    ResponseEntity saveV2(PhysicalPersonDTOV2 physicalPersonDtoV2, BindingResult result);
 
     /**
      * Update response entity.
      *
-     * @param customerId   the customer id
+     * @param customerId     the customer id
      * @param physicalPerson the physical person
      * @return the response entity
      */
