@@ -6,6 +6,9 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * The type Physical person.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +16,7 @@ import javax.persistence.Entity;
 @ToString(callSuper = true)
 @Entity
 @DiscriminatorValue(value = "1")
-public class PessoaFisica extends Pessoa {
+public class PhysicalPerson extends Person {
 
     @CPF
     private String cpf;

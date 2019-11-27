@@ -11,46 +11,48 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+/**
+ * The type Person.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity
-@Table(name = "pessoa", schema = "public")
+@Table(name = "person", schema = "public")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "type", length = 1, discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorValue("0")
-public class Pessoa extends RepresentationModel {
+public class Person extends RepresentationModel {
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
-    @NotNull
     @EqualsAndHashCode.Include
     private Integer id;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "name", nullable = false)
     @Length(min = 1, max = 100)
     @NotNull
-    private String nome;
+    private String name;
 
-    @Column(name = "telefone", nullable = false)
+    @Column(name = "telephone", nullable = false)
     @Length(min = 1, max = 15)
     @NotNull
-    private String telefone;
+    private String telephone;
 
-    @Column(name = "endereco", length = 200)
+    @Column(name = "address", length = 200)
     @Length(max = 200)
     @NotNull
-    private String endereco;
+    private String address;
 
-    @Column(name = "nacionalidade", length = 50)
+    @Column(name = "nationality", length = 50)
     @Length(max = 50)
-    private String nacionalidade;
+    private String nationality;
 
-    @Column(name = "naturalidade", length = 50)
+    @Column(name = "naturalness", length = 50)
     @Length(max = 50)
-    private String naturalidade;
+    private String naturalness;
 
     @Email
     private String email;
