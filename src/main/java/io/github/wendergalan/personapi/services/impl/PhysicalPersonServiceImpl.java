@@ -27,6 +27,9 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
     @Autowired
     private PhysicalPersonRepository physicalPersonRepository;
 
+    @Autowired
+    private PhysicalPersonMapper physicalPersonMapper;
+
     @Override
     public ResponseEntity deleteById(int idPhysicalPerson) {
         physicalPersonRepository.deleteById(idPhysicalPerson);
@@ -38,7 +41,7 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(Helper.criarListaDeErrosDaValidacao(result.getAllErrors()));
 
-        PhysicalPerson physicalPerson = PhysicalPersonMapper.INSTANCE.physicalPersonDTOV1ToPhysicalPerson(physicalPersonDtoV1);
+        PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV1ToPhysicalPerson(physicalPersonDtoV1);
 
         physicalPersonRepository.save(physicalPerson);
 
@@ -56,7 +59,7 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
         if (result.hasErrors())
             return ResponseEntity.badRequest().body(Helper.criarListaDeErrosDaValidacao(result.getAllErrors()));
 
-        PhysicalPerson physicalPerson = PhysicalPersonMapper.INSTANCE.physicalPersonDTOV2PhysicalPerson(physicalPersonDtoV2);
+        PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV2PhysicalPerson(physicalPersonDtoV2);
 
         physicalPersonRepository.save(physicalPerson);
 
