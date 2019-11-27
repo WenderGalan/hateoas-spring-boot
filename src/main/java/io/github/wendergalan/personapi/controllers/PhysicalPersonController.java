@@ -4,7 +4,7 @@ import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
 import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
 import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
 import io.github.wendergalan.personapi.services.PhysicalPersonService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Api("Physical Person Controller")
 @RestController
 @RequestMapping("/physical_people")
 public class PhysicalPersonController {
