@@ -1,4 +1,4 @@
-package io.github.wendergalan.hateoasproject.config;
+package io.github.wendergalan.personapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +32,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("person-api-1")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("io.github.wendergalan.hateoasproject.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("io.github.wendergalan.personapi.controllers"))
                 .paths(regex("/physical_people/v1.*"))
                 .build()
                 .apiInfo(new ApiInfoBuilder().version("1").title("Person API").description("Documentation Person API v1").build());
@@ -48,7 +48,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("person-api-2")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("io.github.wendergalan.hateoasproject.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("io.github.wendergalan.personapi.controllers"))
                 .paths(regex("/physical_people/v2.*"))
                 .build()
                 .apiInfo(new ApiInfoBuilder().version("2").title("Person API").description("Documentation Person API v2").build());

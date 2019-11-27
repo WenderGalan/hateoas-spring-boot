@@ -1,4 +1,4 @@
-package io.github.wendergalan.hateoasproject.controllers;
+package io.github.wendergalan.personapi.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

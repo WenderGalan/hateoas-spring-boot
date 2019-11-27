@@ -1,4 +1,4 @@
-package io.github.wendergalan.hateoasproject;
+package io.github.wendergalan.personapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

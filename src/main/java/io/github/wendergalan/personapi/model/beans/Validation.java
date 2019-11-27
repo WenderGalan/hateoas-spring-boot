@@ -1,4 +1,4 @@
-package io.github.wendergalan.hateoasproject.model.beans;
+package io.github.wendergalan.personapi.model.beans;
 
 import lombok.Builder;
 import lombok.Data;

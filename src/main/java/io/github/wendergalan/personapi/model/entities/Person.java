@@ -1,4 +1,4 @@
-package io.github.wendergalan.hateoasproject.model.entities;
+package io.github.wendergalan.personapi.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,10 +1,10 @@
-package io.github.wendergalan.hateoasproject.services.impl;
+package io.github.wendergalan.personapi.services.impl;
 
-import io.github.wendergalan.hateoasproject.controllers.PhysicalPersonController;
-import io.github.wendergalan.hateoasproject.helper.Helper;
-import io.github.wendergalan.hateoasproject.model.entities.PhysicalPerson;
-import io.github.wendergalan.hateoasproject.repositories.PhysicalPersonRepository;
-import io.github.wendergalan.hateoasproject.services.PhysicalPersonService;
+import io.github.wendergalan.personapi.controllers.PhysicalPersonController;
+import io.github.wendergalan.personapi.helper.Helper;
+import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.repositories.PhysicalPersonRepository;
+import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
-package io.github.wendergalan.hateoasproject.services;
+package io.github.wendergalan.personapi.services;
 
-import io.github.wendergalan.hateoasproject.model.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 

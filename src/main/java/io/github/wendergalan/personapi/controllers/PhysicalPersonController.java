@@ -1,7 +1,7 @@
-package io.github.wendergalan.hateoasproject.controllers;
+package io.github.wendergalan.personapi.controllers;
 
-import io.github.wendergalan.hateoasproject.model.entities.PhysicalPerson;
-import io.github.wendergalan.hateoasproject.services.PhysicalPersonService;
+import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
