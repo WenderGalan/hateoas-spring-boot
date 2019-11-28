@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * The type Physical person controller.
+ */
 @Api("Physical Person Controller")
 @RestController
 @RequestMapping("/physical_people")
@@ -19,6 +22,11 @@ public class PhysicalPersonController {
     @Autowired
     private PhysicalPersonService physicalPersonService;
 
+    /**
+     * Find all people response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/v1")
     @ApiOperation(value = "Find All People", notes = "Retrieving the collection of people", response = ResponseEntity.class)
     @ApiResponses({
@@ -28,6 +36,12 @@ public class PhysicalPersonController {
         return physicalPersonService.findAllPeople();
     }
 
+    /**
+     * Gets by id.
+     *
+     * @param idPhysicalPerson the id physical person
+     * @return the by id
+     */
     @GetMapping("/v1/{idPhysicalPerson}")
     @ApiOperation(value = "Get People By ID", notes = "Retrieving the detail person")
     @ApiResponses({
@@ -40,6 +54,12 @@ public class PhysicalPersonController {
         return physicalPersonService.getById(idPhysicalPerson);
     }
 
+    /**
+     * Delete by id response entity.
+     *
+     * @param idPhysicalPerson the id physical person
+     * @return the response entity
+     */
     @DeleteMapping("/v1/{idPhysicalPerson}")
     @ApiOperation(value = "Delete People By ID", notes = "Delete the person")
     @ApiResponses({
@@ -52,6 +72,13 @@ public class PhysicalPersonController {
         return physicalPersonService.deleteById(idPhysicalPerson);
     }
 
+    /**
+     * Save v 1 response entity.
+     *
+     * @param physicalPersonDtoV1 the physical person dto v 1
+     * @param result              the result
+     * @return the response entity
+     */
     @Deprecated
     @PostMapping("/v1")
     @ApiOperation(value = "Create Physical Person", notes = "Creating a new physical person")
@@ -65,6 +92,13 @@ public class PhysicalPersonController {
         return physicalPersonService.saveV1(physicalPersonDtoV1, result);
     }
 
+    /**
+     * Update v 1 response entity.
+     *
+     * @param idPhysicalPerson    the id physical person
+     * @param physicalPersonDtoV1 the physical person dto v 1
+     * @return the response entity
+     */
     @Deprecated
     @PutMapping("/v1/{idPhysicalPerson}")
     @ApiOperation(value = "Update Physical Person", notes = "Updating a physical person")
@@ -78,6 +112,13 @@ public class PhysicalPersonController {
         return physicalPersonService.updateV1(idPhysicalPerson, physicalPersonDtoV1);
     }
 
+    /**
+     * Update v 2 response entity.
+     *
+     * @param idPhysicalPerson    the id physical person
+     * @param physicalPersonDtoV2 the physical person dto v 2
+     * @return the response entity
+     */
     @PutMapping("/v2/{idPhysicalPerson}")
     @ApiOperation(value = "Update Physical Person", notes = "Updating a physical person")
     @ApiResponses({
@@ -90,6 +131,13 @@ public class PhysicalPersonController {
         return physicalPersonService.updateV2(idPhysicalPerson, physicalPersonDtoV2);
     }
 
+    /**
+     * Save v 2 response entity.
+     *
+     * @param physicalPersonDtoV2 the physical person dto v 2
+     * @param result              the result
+     * @return the response entity
+     */
     @PostMapping("/v2")
     @ApiOperation(value = "Create Physical Person", notes = "Creating a new physical person")
     @ApiResponses({

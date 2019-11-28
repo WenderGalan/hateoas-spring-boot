@@ -33,9 +33,9 @@ public class Helper {
      * Link para o relato do problema:
      * https://stackoverflow.com/questions/12514587/spring-how-to-remove-a-fielderror-from-a-bindingresult
      *
-     * @param validator
-     * @param object
-     * @return
+     * @param validator the validator
+     * @param object    the object
+     * @return binding result
      */
     public static BindingResult validarEntidade(@NotNull Validator validator, @NotNull Object object) {
         DataBinder binder = new DataBinder(object);

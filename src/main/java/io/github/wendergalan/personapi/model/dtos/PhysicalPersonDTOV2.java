@@ -9,6 +9,9 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+/**
+ * The type Physical person dtov 2.
+ */
 @Data
 @ApiModel(value = "Physical Person DTO V2", description = "Model Physical Person DTO V2")
 public class PhysicalPersonDTOV2 {

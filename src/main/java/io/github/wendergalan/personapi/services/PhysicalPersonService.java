@@ -39,7 +39,7 @@ public interface PhysicalPersonService {
     /**
      * Update response entity.
      *
-     * @param customerId     the customer id
+     * @param customerId          the customer id
      * @param physicalPersonDTOV1 the physical person
      * @return the response entity
      */
@@ -48,7 +48,7 @@ public interface PhysicalPersonService {
     /**
      * Update response entity.
      *
-     * @param customerId     the customer id
+     * @param customerId          the customer id
      * @param physicalPersonDTOV2 the physical person
      * @return the response entity
      */
