@@ -10,11 +10,12 @@ import io.github.wendergalan.personapi.repositories.PhysicalPersonRepository;
 import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,14 +33,19 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
 
     @Override
     public ResponseEntity deleteById(int idPhysicalPerson) {
-        physicalPersonRepository.deleteById(idPhysicalPerson);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return physicalPersonRepository
+                .findById(idPhysicalPerson)
+                .map(p -> {
+                    physicalPersonRepository.deleteById(idPhysicalPerson);
+                    return ResponseEntity.noContent().build();
+                })
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @Override
     public ResponseEntity saveV1(PhysicalPersonDTOV1 physicalPersonDtoV1, BindingResult result) {
         if (result.hasErrors())
-            return ResponseEntity.badRequest().body(Helper.criarListaDeErrosDaValidacao(result.getAllErrors()));
+            return ResponseEntity.badRequest().body(Helper.createListOfErrorValidations(result.getAllErrors()));
 
         PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV1ToPhysicalPerson(physicalPersonDtoV1);
 
@@ -51,15 +57,20 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).getById(physicalPerson.getId())).withRel("details").withType(HttpMethod.GET.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).findAllPeople()).withRel("find-all").withType(HttpMethod.GET.toString()));
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(physicalPerson);
+        URI uri = MvcUriComponentsBuilder.fromController(getClass())
+                .path("/{idPhysicalPerson}")
+                .buildAndExpand(physicalPerson.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(physicalPerson);
     }
 
     @Override
     public ResponseEntity saveV2(PhysicalPersonDTOV2 physicalPersonDtoV2, BindingResult result) {
         if (result.hasErrors())
-            return ResponseEntity.badRequest().body(Helper.criarListaDeErrosDaValidacao(result.getAllErrors()));
+            return ResponseEntity.badRequest().body(Helper.createListOfErrorValidations(result.getAllErrors()));
 
-        PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV2PhysicalPerson(physicalPersonDtoV2);
+        PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV2ToPhysicalPerson(physicalPersonDtoV2);
 
         physicalPersonRepository.save(physicalPerson);
 
@@ -69,11 +80,31 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).getById(physicalPerson.getId())).withRel("details").withType(HttpMethod.GET.toString()));
         physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).findAllPeople()).withRel("find-all").withType(HttpMethod.GET.toString()));
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(physicalPerson);
+        URI uri = MvcUriComponentsBuilder.fromController(getClass())
+                .path("/{idPhysicalPerson}")
+                .buildAndExpand(physicalPerson.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(physicalPerson);
     }
 
     @Override
-    public ResponseEntity update(int idPhysicalPerson, PhysicalPerson physicalPerson) {
+    public ResponseEntity updateV1(int idPhysicalPerson, PhysicalPersonDTOV1 physicalPersonDTOV1) {
+        PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV1ToPhysicalPerson(physicalPersonDTOV1);
+        physicalPerson.setId(idPhysicalPerson);
+
+        // Add HATEOAS
+        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).getById(idPhysicalPerson)).withSelfRel().withType(HttpMethod.PUT.toString()));
+        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).deleteById(idPhysicalPerson)).withRel("delete").withType(HttpMethod.DELETE.toString()));
+        physicalPerson.add(linkTo(methodOn(PhysicalPersonController.class).findAllPeople()).withRel("find-all").withType(HttpMethod.GET.toString()));
+
+        physicalPersonRepository.save(physicalPerson);
+        return ResponseEntity.ok(physicalPerson);
+    }
+
+    @Override
+    public ResponseEntity updateV2(int idPhysicalPerson, PhysicalPersonDTOV2 physicalPersonDTOV2) {
+        PhysicalPerson physicalPerson = physicalPersonMapper.physicalPersonDTOV2ToPhysicalPerson(physicalPersonDTOV2);
         physicalPerson.setId(idPhysicalPerson);
 
         // Add HATEOAS
@@ -108,7 +139,7 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
             pf.add(linkTo(methodOn(PhysicalPersonController.class).findAllPeople()).withSelfRel().withType(HttpMethod.GET.toString()));
             pf.add(linkTo(methodOn(PhysicalPersonController.class).getById(pf.getId())).withRel("details").withType(HttpMethod.GET.toString()));
             pf.add(linkTo(methodOn(PhysicalPersonController.class).deleteById(pf.getId())).withRel("delete").withType(HttpMethod.DELETE.toString()));
-            pf.add(linkTo(methodOn(PhysicalPersonController.class).update(pf.getId(), pf)).withRel("update").withType(HttpMethod.PUT.toString()));
+            pf.add(linkTo(methodOn(PhysicalPersonController.class).updateV2(pf.getId(), null)).withRel("update").withType(HttpMethod.PUT.toString()));
         });
         return ResponseEntity.ok(physicalPeople);
     }

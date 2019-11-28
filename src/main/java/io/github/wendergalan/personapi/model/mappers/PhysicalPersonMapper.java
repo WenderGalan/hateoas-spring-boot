@@ -10,5 +10,5 @@ public interface PhysicalPersonMapper {
 
     PhysicalPerson physicalPersonDTOV1ToPhysicalPerson(PhysicalPersonDTOV1 physicalPersonDtoV1);
 
-    PhysicalPerson physicalPersonDTOV2PhysicalPerson(PhysicalPersonDTOV2 physicalPersonDtoV2);
+    PhysicalPerson physicalPersonDTOV2ToPhysicalPerson(PhysicalPersonDTOV2 physicalPersonDtoV2);
 }

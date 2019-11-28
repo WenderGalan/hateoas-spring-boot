@@ -18,7 +18,7 @@ public class Helper {
      * @param erros the erros
      * @return the list
      */
-    public static List<Validation> criarListaDeErrosDaValidacao(List<ObjectError> erros) {
+    public static List<Validation> createListOfErrorValidations(List<ObjectError> erros) {
         List<Validation> lista = new ArrayList<>();
         if (erros != null && !erros.isEmpty()) {
             for (ObjectError error : erros)
