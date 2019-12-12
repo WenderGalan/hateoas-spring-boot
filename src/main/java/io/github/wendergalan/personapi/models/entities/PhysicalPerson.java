@@ -1,4 +1,4 @@
-package io.github.wendergalan.personapi.model.entities;
+package io.github.wendergalan.personapi.models.entities;
 
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;

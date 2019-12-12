@@ -1,4 +1,4 @@
-package io.github.wendergalan.personapi.model.beans;
+package io.github.wendergalan.personapi.models.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

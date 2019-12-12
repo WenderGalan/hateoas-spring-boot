@@ -2,10 +2,10 @@ package io.github.wendergalan.personapi.services.impl;
 
 import io.github.wendergalan.personapi.controllers.PhysicalPersonController;
 import io.github.wendergalan.personapi.helper.Helper;
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
-import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
-import io.github.wendergalan.personapi.model.mappers.PhysicalPersonMapper;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV1;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
+import io.github.wendergalan.personapi.models.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.models.mappers.PhysicalPersonMapper;
 import io.github.wendergalan.personapi.repositories.PhysicalPersonRepository;
 import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import org.springframework.beans.factory.annotation.Autowired;

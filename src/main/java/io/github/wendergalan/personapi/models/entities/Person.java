@@ -1,5 +1,6 @@
-package io.github.wendergalan.personapi.model.entities;
+package io.github.wendergalan.personapi.models.entities;
 
+import io.github.wendergalan.personapi.annotations.adult.Adult;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,6 +11,7 @@ import org.springframework.hateoas.RepresentationModel;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 /**
  * The type Person.
@@ -48,6 +50,10 @@ public class Person extends RepresentationModel {
     @Column(name = "nationality", length = 50)
     @Length(max = 50)
     private String nationality;
+
+    @Adult
+    @NotNull
+    private LocalDate dateOfBirth;
 
     @Column(name = "naturalness", length = 50)
     @Length(max = 50)

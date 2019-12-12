@@ -1,14 +1,16 @@
-package io.github.wendergalan.personapi.model.mappers;
+package io.github.wendergalan.personapi.models.mappers;
 
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
-import io.github.wendergalan.personapi.model.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV1;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
+import io.github.wendergalan.personapi.models.entities.PhysicalPerson;
+import io.github.wendergalan.personapi.models.mappers.custom.LocalDateMapper;
 import org.mapstruct.Mapper;
 
 /**
  * The interface Physical person mapper.
+ * https://mapstruct.org/documentation/stable/reference/html/#invoking-other-mappers
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = LocalDateMapper.class)
 public interface PhysicalPersonMapper {
 
     /**

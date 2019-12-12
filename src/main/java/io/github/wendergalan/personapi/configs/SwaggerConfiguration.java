@@ -1,4 +1,4 @@
-package io.github.wendergalan.personapi.config;
+package io.github.wendergalan.personapi.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

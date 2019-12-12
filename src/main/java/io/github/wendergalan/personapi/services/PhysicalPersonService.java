@@ -1,7 +1,7 @@
 package io.github.wendergalan.personapi.services;
 
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV1;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 

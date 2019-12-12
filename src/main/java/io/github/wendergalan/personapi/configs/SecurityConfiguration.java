@@ -1,4 +1,4 @@
-package io.github.wendergalan.personapi.config;
+package io.github.wendergalan.personapi.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

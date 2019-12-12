@@ -1,6 +1,6 @@
 package io.github.wendergalan.personapi.helper;
 
-import io.github.wendergalan.personapi.model.beans.Validation;
+import io.github.wendergalan.personapi.models.beans.Validation;
 import org.springframework.validation.*;
 
 import javax.validation.constraints.NotNull;

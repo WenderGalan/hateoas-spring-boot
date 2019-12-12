@@ -1,7 +1,7 @@
 package io.github.wendergalan.personapi.controllers;
 
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV1;
-import io.github.wendergalan.personapi.model.dtos.PhysicalPersonDTOV2;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV1;
+import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
 import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;

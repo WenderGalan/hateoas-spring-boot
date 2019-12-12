@@ -1,7 +1,7 @@
-package io.github.wendergalan.personapi.config;
+package io.github.wendergalan.personapi.configs;
 
 
-import io.github.wendergalan.personapi.model.beans.ResponseError;
+import io.github.wendergalan.personapi.models.beans.ResponseError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

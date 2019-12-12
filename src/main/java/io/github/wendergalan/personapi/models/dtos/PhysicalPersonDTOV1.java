@@ -1,5 +1,6 @@
-package io.github.wendergalan.personapi.model.dtos;
+package io.github.wendergalan.personapi.models.dtos;
 
+import io.github.wendergalan.personapi.annotations.adult.Adult;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,13 +9,14 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 /**
- * The type Physical person dtov 2.
+ * The type Physical person dtov 1.
  */
 @Data
-@ApiModel(value = "Physical Person DTO V2", description = "Model Physical Person DTO V2")
-public class PhysicalPersonDTOV2 {
+@ApiModel(value = "Physical Person DTO V1", description = "Model Physical Person DTO V1")
+public class PhysicalPersonDTOV1 {
 
     @ApiModelProperty(value = "The unique identifier of the physical person", required = true)
     private Integer id;
@@ -30,16 +32,20 @@ public class PhysicalPersonDTOV2 {
     private String telephone;
 
     /**
-     * Address can't be null
+     * Address can be null
      */
-    @ApiModelProperty(value = "Telephone of Physical Person", required = true)
+    @ApiModelProperty(value = "Telephone of Physical Person")
     @Length(max = 200)
-    @NotNull
     private String address;
 
     @ApiModelProperty(value = "Nationality of Physical Person")
     @Length(max = 50)
     private String nationality;
+
+    @ApiModelProperty(value = "Date of Birth of Physical Person")
+    @Adult
+    @NotNull
+    private LocalDate dateOfBirth;
 
     @ApiModelProperty(value = "Naturaless of Physical Person")
     @Length(max = 50)
