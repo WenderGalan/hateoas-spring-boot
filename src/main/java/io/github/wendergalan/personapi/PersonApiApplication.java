@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * The type Hateoas project application.
  */
 @SpringBootApplication
-public class HateoasProjectApplication {
+public class PersonApiApplication {
 
     /**
      * The entry point of application.
@@ -15,7 +15,7 @@ public class HateoasProjectApplication {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        SpringApplication.run(HateoasProjectApplication.class, args);
+        SpringApplication.run(PersonApiApplication.class, args);
     }
 
 }
