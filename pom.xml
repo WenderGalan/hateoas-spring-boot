@@ -11,8 +11,8 @@
     <groupId>io.github.wendergalan</groupId>
     <artifactId>hateoas-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hateoas-project</name>
-    <description>Implementação do HATEOAS com Spring Boot</description>
+    <name>person-api</name>
+    <description>Implements person api</description>
 
     <properties>
         <java.version>1.8</java.version>

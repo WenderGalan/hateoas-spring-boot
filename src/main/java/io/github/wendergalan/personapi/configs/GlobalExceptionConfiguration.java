@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
  */
 @Slf4j
 @ControllerAdvice
-public class GlobalExceptionConfig {
+public class GlobalExceptionConfiguration {
 
     /**
      * Handle error generic response entity.
