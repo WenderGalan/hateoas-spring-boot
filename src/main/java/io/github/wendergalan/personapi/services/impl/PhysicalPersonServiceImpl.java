@@ -1,7 +1,7 @@
 package io.github.wendergalan.personapi.services.impl;
 
 import io.github.wendergalan.personapi.controllers.PhysicalPersonController;
-import io.github.wendergalan.personapi.helper.Helper;
+import io.github.wendergalan.personapi.helpers.Helper;
 import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV1;
 import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
 import io.github.wendergalan.personapi.models.entities.PhysicalPerson;
