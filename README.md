@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/WenderGalan/person-api-spring-boot.svg?branch=master)](https://travis-ci.org/WenderGalan/person-api-spring-boot)
 
-# Person API Project
+# Person API RESTFULL Project
 ### Implementation of a RESTFUL API
 
 This API is designed for study using various tools and dependencies to enhance my knowledge of the dependencies below.
