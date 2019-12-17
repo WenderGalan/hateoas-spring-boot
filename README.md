@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/WenderGalan/person-api-spring-boot.svg?branch=master)](https://travis-ci.org/WenderGalan/person-api-spring-boot)
 
-# Person API RESTFULL Project
+# Person API RESTFUL Project
 ### Implementation of a RESTFUL API
 
 This API is designed for study using various tools and dependencies to enhance my knowledge of the dependencies below.
@@ -12,7 +12,7 @@ To run the project you need to define the profile you will use to start the appl
   - #### [LOMBOK](https://projectlombok.org/): Used to prevent use of getters, setters, equals, and other standard methods on persistence entities.
   - #### SPRING SECURITY
   - #### JPA
-  - #### SWAGGER UI: Used for RESTFULL API Documentation
+  - #### SWAGGER UI: Used for RESTFUL API Documentation
   - #### H2: Database for application
   - #### [HATEOAS](https://spring.io/projects/spring-hateoas)
   - #### [JUNIT](https://junit.org/junit5/)
