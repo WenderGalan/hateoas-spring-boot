@@ -15,7 +15,7 @@
       app
       style="justify-content: center"
     >
-      <span>Wender Galan &copy; 2020</span>
+      <span>Wender Galan - Person API &copy; 2020</span>
     </v-footer>
   </v-app>
 </template>

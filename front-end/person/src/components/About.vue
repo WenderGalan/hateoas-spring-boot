@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    About.vue
+    <v-content>
+      About.vue
+      <v-btn to="/">Voltar</v-btn>
+    </v-content>
   </v-app>
 </template>
 
