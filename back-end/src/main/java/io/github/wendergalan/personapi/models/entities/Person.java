@@ -59,6 +59,6 @@ public class Person extends RepresentationModel {
     @Length(max = 50)
     private String naturalness;
 
-    @Email
+    // @Email
     private String email;
 }

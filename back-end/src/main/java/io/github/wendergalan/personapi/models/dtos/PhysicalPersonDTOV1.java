@@ -52,10 +52,10 @@ public class PhysicalPersonDTOV1 {
     private String naturalness;
 
     @ApiModelProperty(value = "Email of Physical Person")
-    @Email
+    // @Email
     private String email;
 
     @ApiModelProperty(value = "CPF of Physical Person")
-    @CPF
+    // @CPF
     private String cpf;
 }
