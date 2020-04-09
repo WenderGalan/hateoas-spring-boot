@@ -5,6 +5,7 @@ import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
 import io.github.wendergalan.personapi.services.PhysicalPersonService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 @Api("Physical Person Controller")
 @RestController
 @RequestMapping("/physical_people")
+@CrossOrigin
 public class PhysicalPersonController {
 
     @Autowired
@@ -32,8 +34,9 @@ public class PhysicalPersonController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Success", response = ResponseEntity.class)
     })
-    public ResponseEntity findAllPeople() {
-        return physicalPersonService.findAllPeople();
+    public ResponseEntity findAllPeople(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                        @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
+        return physicalPersonService.findAllPeople(PageRequest.of(page - 1, size == -1 ? 10000000 : size));
     }
 
     /**

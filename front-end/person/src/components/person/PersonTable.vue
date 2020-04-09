@@ -2,13 +2,16 @@
   <v-data-table
     :headers="headers"
     :items="people"
+    :options.sync="optionsTable"
+    :server-items-length="serverItemsLength"
+    @pagination="updatePagination"
     class="elevation-1"
     sort-by="calories"
   >
     <template v-slot:top>
       <v-toolbar flat>
         <v-spacer></v-spacer>
-        <v-dialog max-width="500px" v-model="dialog">
+        <v-dialog max-width="1000px" v-model="dialog">
           <template v-slot:activator="{ on }">
             <v-btn class="mb-2" color="primary" dark v-on="on">New Person</v-btn>
           </template>
@@ -20,20 +23,53 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" md="4" sm="6">
-                    <v-text-field label="Dessert name" v-model="editedItem.name"></v-text-field>
+                  <v-col cols="12" md="8" sm="6">
+                    <v-text-field
+                      :rules="[() => !!editedItem.name || 'This field is required']" clearable
+                      label="Name of Physical Person *" outlined
+                      ref="name"
+                      required v-model="editedItem.name"
+                    />
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field label="Calories" v-model="editedItem.calories"></v-text-field>
+                    <v-text-field
+                      :rules="[() => !!editedItem.telephone || 'This field is required']" clearable label="Telephone *"
+                      outlined
+                      ref="telephone" required
+                      v-model="editedItem.telephone"
+                    />
                   </v-col>
-                  <v-col cols="12" md="4" sm="6">
-                    <v-text-field label="Fat (g)" v-model="editedItem.fat"></v-text-field>
+                  <v-col cols="12" md="6" sm="6">
+                    <v-text-field
+                      :rules="[() => !!editedItem.nationality || 'This field is required']" clearable
+                      label="Nationality *" outlined
+                      ref="nationality"
+                      required v-model="editedItem.nationality"
+                    />
                   </v-col>
-                  <v-col cols="12" md="4" sm="6">
-                    <v-text-field label="Carbs (g)" v-model="editedItem.carbs"></v-text-field>
+                  <v-col cols="12" md="6" sm="6">
+                    <v-text-field
+                      :rules="[() => !!editedItem.naturalness || 'This field is required']" clearable
+                      label="Naturalness *" outlined
+                      ref="naturalness"
+                      required v-model="editedItem.naturalness"
+                    />
                   </v-col>
-                  <v-col cols="12" md="4" sm="6">
-                    <v-text-field label="Protein (g)" v-model="editedItem.protein"></v-text-field>
+                  <v-col cols="12" md="6" sm="6">
+                    <v-text-field
+                      :rules="[() => !!editedItem.email || 'This field is required']" clearable email
+                      label="E-mail *"
+                      outlined
+                      ref="email"
+                      required v-model="editedItem.email"
+                    />
+                  </v-col>
+                  <v-col cols="12" md="6" sm="6">
+                    <v-text-field
+                      :rules="[() => !!editedItem.cpf || 'This field is required']" clearable label="CPF *" outlined
+                      ref="cpf"
+                      required v-model="editedItem.cpf"
+                    />
                   </v-col>
                 </v-row>
               </v-container>
@@ -76,22 +112,21 @@ export default {
     headers: [
       { text: 'Name', align: 'start', value: 'name' },
       { text: 'Telephone', value: 'telephone' },
-      { text: 'Address', value: 'address' },
       { text: 'Nationality', value: 'nationality' },
-      { text: 'Date of Birth', value: 'dateOfBirth' },
       { text: 'Naturalness', value: 'naturalness' },
       { text: 'CPF', value: 'cpf' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
     people: [],
     editedIndex: -1,
+    formHasErrors: false,
     editedItem: {
       name: '',
       telephone: '',
       address: '',
       nationality: '',
-      dateOfBirth: '',
-      naturaless: '',
+      dateOfBirth: '2001-11-19',
+      naturalness: '',
       email: '',
       cpf: ''
     },
@@ -100,10 +135,20 @@ export default {
       telephone: '',
       address: '',
       nationality: '',
-      dateOfBirth: '',
-      naturaless: '',
+      dateOfBirth: '2001-11-19',
+      naturalness: '',
       email: '',
       cpf: ''
+    },
+    serverItemsLength: 0,
+    optionsTable: {
+      page: 1,
+      itemsPerPage: 10,
+      pageStart: 1,
+      pageStop: 1,
+      pageCount: 1,
+      itemsLength: 10,
+      rowsPerPageItems: [1, 2, 4, 8, 16]
     }
   }),
   /**
@@ -111,6 +156,17 @@ export default {
   computed: {
     formTitle () {
       return this.editedIndex === -1 ? 'Inclusion Person' : 'Change Person'
+    },
+    form () {
+      return {
+        name: this.editedItem.name,
+        telephone: this.editedItem.telephone,
+        nationality: this.editedItem.nationality,
+        dateOfBirth: this.editedItem.dateOfBirth,
+        naturalness: this.editedItem.naturalness,
+        email: this.editedItem.email,
+        cpf: this.editedItem.cpf
+      }
     }
   },
   /**
@@ -123,19 +179,23 @@ export default {
   /**
    */
   created () {
-    this.initialize()
   },
   /**
    */
   methods: {
     /**
      */
-    initialize () {
-      this.people = [
-        {
-          name: 'Wender Galan'
-        }
-      ]
+    findPhysicalPeople ({ page, size }) {
+      this.$http.get('/physical_people/v1', { params: { page, size } })
+        .then((response) => {
+          this.serverItemsLength = response.data.totalElements
+          this.people = response.data.content
+        })
+    },
+    /**
+     */
+    updatePagination (pagination) {
+      this.findPhysicalPeople({ page: pagination.page, size: pagination.itemsPerPage })
     },
     /**
      */
@@ -148,7 +208,10 @@ export default {
      */
     deleteItem (item) {
       const index = this.people.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.people.splice(index, 1)
+      if (confirm('Are you sure you want to delete this item?')) {
+        this.$http.delete(`/physical_people/v1/${this.people[index].id}`)
+          .then(() => (this.people.splice(index, 1)))
+      }
     },
     /**
      */
@@ -161,19 +224,51 @@ export default {
     },
     /**
      */
+    validateForm () {
+      return new Promise(((resolve, reject) => {
+        this.formHasErrors = false
+        Object.keys(this.form).forEach(f => {
+          if (!this.form[f]) {
+            this.formHasErrors = true
+          }
+          if (this.$refs[f]) {
+            this.$refs[f].validate(true)
+          }
+        })
+
+        if (!this.formHasErrors) {
+          return resolve()
+        }
+        return reject()
+      }))
+    },
+    /**
+     */
     save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.people[this.editedIndex], this.editedItem)
-      }
-      else {
-        this.people.push(this.editedItem)
-      }
-      this.close()
+      /* eslint-disable no-debugger */
+      debugger
+      this.validateForm()
+        .then(() => {
+          if (this.editedIndex > -1) {
+            this.$http.put(`/physical_people/v1/${this.editedItem.id}`, this.editedItem)
+              .then((response) => {
+                Object.assign(this.people[this.editedIndex], response.data)
+                this.close()
+              })
+          }
+          else {
+            this.$http.post(`/physical_people/v1`, this.editedItem)
+              .then((response) => {
+                this.editedItem.id = response.data.id
+                this.updatePagination({ page: this.optionsTable.page, size: this.optionsTable.itemsPerPage })
+                this.close()
+              })
+          }
+        })
     }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

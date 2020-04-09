@@ -17,25 +17,6 @@
       </v-toolbar-title>
       <v-spacer />
       <v-toolbar-items>
-        <v-menu>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              v-bind="attrs"
-              v-on="on"
-            >
-              <span>Version</span>
-            </v-btn>
-          </template>
-
-          <v-list>
-            <v-list-item @click="openV1">
-              <v-list-item-title>V1</v-list-item-title>
-            </v-list-item>
-            <v-list-item @click="openV2">
-              <v-list-item-title>V2</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
         <v-btn
           to="/about"
         >About

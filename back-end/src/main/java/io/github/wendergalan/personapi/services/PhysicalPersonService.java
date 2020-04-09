@@ -2,6 +2,7 @@ package io.github.wendergalan.personapi.services;
 
 import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV1;
 import io.github.wendergalan.personapi.models.dtos.PhysicalPersonDTOV2;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 
@@ -63,9 +64,8 @@ public interface PhysicalPersonService {
     ResponseEntity getById(int idPhysicalPerson);
 
     /**
-     * Find all people response entity.
-     *
-     * @return the response entity
+     * @param pageRequest
+     * @return
      */
-    ResponseEntity findAllPeople();
+    ResponseEntity findAllPeople(PageRequest pageRequest);
 }
