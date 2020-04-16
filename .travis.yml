@@ -4,3 +4,4 @@ dist: trusty
 before_install:
   - cd back-end
   - chmod +x mvnw
+install: true
