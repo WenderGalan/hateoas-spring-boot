@@ -8,7 +8,7 @@ const token = Buffer.from(`${username}:${password}`, 'utf8').toString('base64')
 Vue.use({
   install(Vue) {
     Vue.prototype.$http = axios.create({
-      baseURL: 'http://localhost:8080/',
+      baseURL: 'https://person-vue-spring-boot.herokuapp.com',
       headers: {
         Authorization: `Basic ${token}`
       }

@@ -47,11 +47,26 @@ public class PersonApiApplication extends SpringBootServletInitializer {
         List<PhysicalPerson> people = new ArrayList<>();
         people.add(generatePhysicalPerson("Wender Galan"));
         people.add(generatePhysicalPerson("José Farias"));
+        people.add(generatePhysicalPerson("Wender Galan"));
         people.add(generatePhysicalPerson("Bruno Bereira"));
         people.add(generatePhysicalPerson("Rapaz do Céu"));
+        people.add(generatePhysicalPerson("José Farias"));
         people.add(generatePhysicalPerson("Maria Josefa de Souza Cardoso"));
         people.add(generatePhysicalPerson("Pedro Rodolfo"));
-        people.add(generatePhysicalPerson("Leonardo das Costas"));
+        people.add(generatePhysicalPerson("Rapaz do Céu"));
+        people.add(generatePhysicalPerson("Bacana Assad"));
+        people.add(generatePhysicalPerson("Assaad Sensacional"));
+        people.add(generatePhysicalPerson("Assad Esplêndidos"));
+        people.add(generatePhysicalPerson("Originário Maria"));
+        people.add(generatePhysicalPerson("Cativa Marola"));
+        people.add(generatePhysicalPerson("Assaad Sensacional"));
+        people.add(generatePhysicalPerson("Funcionais Ferreira"));
+        people.add(generatePhysicalPerson("Essencial Marola"));
+        people.add(generatePhysicalPerson("Diverso Maria"));
+        people.add(generatePhysicalPerson("Controverso Ferreira"));
+        people.add(generatePhysicalPerson("Essencial Marola"));
+        people.add(generatePhysicalPerson("Funcionais Ferreira"));
+        people.add(generatePhysicalPerson("Essencial Marola"));
         physicalPersonRepository.saveAll(people);
     }
 }
