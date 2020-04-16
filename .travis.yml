@@ -2,6 +2,6 @@ language: java
 jdk: oraclejdk8
 dist: trusty
 before_install:
-  - cd Back-end
+  - cd back-end
   - chmod +x mvnw
 install: true
