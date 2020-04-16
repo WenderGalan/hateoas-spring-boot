@@ -18,6 +18,10 @@
       <v-spacer />
       <v-toolbar-items>
         <v-btn
+          to="/"
+        >Home
+        </v-btn>
+        <v-btn
           to="/about"
         >About
         </v-btn>
@@ -28,15 +32,7 @@
 
 <script>
 export default {
-  name: 'Toolbar',
-  methods: {
-    openV1 () {
-      console.log('~> Vai para a API V1')
-    },
-    openV2 () {
-      console.log('~> Vai para a API V2')
-    }
-  }
+  name: 'Toolbar'
 }
 </script>
 

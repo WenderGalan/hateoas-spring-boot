@@ -35,6 +35,7 @@
                     <v-text-field
                       :rules="[() => !!editedItem.telephone || 'This field is required']" clearable label="Telephone *"
                       outlined
+                      v-mask="['(##) ####-####', '(##) #####-####']"
                       ref="telephone" required
                       v-model="editedItem.telephone"
                     />
@@ -68,6 +69,7 @@
                     <v-text-field
                       :rules="[() => !!editedItem.cpf || 'This field is required']" clearable label="CPF *" outlined
                       ref="cpf"
+                      v-mask="'###.###.###-##'"
                       required v-model="editedItem.cpf"
                     />
                   </v-col>
@@ -100,13 +102,19 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      <span>No records</span>
+      <span>There are no records, try to </span>
+      <a @click="findPhysicalPeople">update.</a>
     </template>
   </v-data-table>
 </template>
 <script>
+import { mask } from 'vue-the-mask'
+
 export default {
   name: 'PersonTable',
+  directives: {
+    mask
+  },
   data: () => ({
     dialog: false,
     headers: [
@@ -178,10 +186,6 @@ export default {
   },
   /**
    */
-  created () {
-  },
-  /**
-   */
   methods: {
     /**
      */
@@ -210,7 +214,10 @@ export default {
       const index = this.people.indexOf(item)
       if (confirm('Are you sure you want to delete this item?')) {
         this.$http.delete(`/physical_people/v1/${this.people[index].id}`)
-          .then(() => (this.people.splice(index, 1)))
+          .then(() => {
+            this.people.splice(index, 1)
+            this.updatePagination({ page: this.optionsTable.page, size: this.optionsTable.itemsPerPage })
+          })
       }
     },
     /**
@@ -245,8 +252,6 @@ export default {
     /**
      */
     save () {
-      /* eslint-disable no-debugger */
-      debugger
       this.validateForm()
         .then(() => {
           if (this.editedIndex > -1) {

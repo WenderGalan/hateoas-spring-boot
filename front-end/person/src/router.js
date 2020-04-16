@@ -5,10 +5,34 @@ import About from './components/About'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
-    { path: '/', component: PersonTable },
-    { path: '/about', component: About }
+    {
+      path: '/',
+      component: PersonTable,
+      meta: {
+        title: 'Person API - Home'
+      }
+    },
+    {
+      path: '/about',
+      component: About,
+      meta: {
+        title: 'Person API - About'
+      }
+    },
+    {
+      path: '*',
+      redirect: '/'
+    }
   ]
 })
+
+// Add to router to change the name of page title
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'PERSON API'
+  next()
+})
+
+export default router
