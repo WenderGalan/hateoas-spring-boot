@@ -29,10 +29,25 @@ To run the project you need to define the profile you will use to start the appl
   - #### [TRAVIS CI](https://travis-ci.org/WenderGalan/person-vue-spring-boot.svg?branch=master)
 
 ### Deploy
-  - #### [FRONT-END](https://person-vue-spring-boot.netlify.app/) - [NETLIFY](https://www.netlify.com/)
-  - #### [BACK-END](https://person-vue-spring-boot.herokuapp.com/) - [HEROKU](https://dashboard.heroku.com/)
+  - #### [FRONT-END (CLICK HERE)](https://person-vue-spring-boot.netlify.app/) - [NETLIFY](https://www.netlify.com/)
+  - #### [BACK-END (CLICK HERE)](https://person-vue-spring-boot.herokuapp.com/) - [HEROKU](https://dashboard.heroku.com/)
     - ##### Default login to api: 'personapi'
     - ##### Default password to api: 'passworddefault'
+    
+- ### How to run the project?
+  Assuming you already have Docker installed on the machine, perform the procedures below:
+
+  Open the console in the root folder of the application
+
+  Run the deploy, update the application image and create the front-end and back-end applications
+  
+  ```
+  docker-compose up -d --build
+  ```
+
+  No seu browser acesse as urls: 
+    - Front-end: http://localhost:5000
+    - Back-end: http://localhost:4000/swagger-ui.html
   
  ## License
 ```
