@@ -1,12 +1,32 @@
 version: '3.4'
 services:
-  person-api:
-    image: person-api
-    container_name: "person-api"
+  back-end:
+    image: back-end
+    container_name: "back-end"
     restart: on-failure
     build:
-      context: .
-      dockerfile: back-end/Dockerfile
+      context: ./back-end
+      dockerfile: ./Dockerfile
     ports:
-      - 8080:8080
+      - 4000:8080
     command: mvn spring-boot:run
+    networks:
+      - person-vue-network
+  front-end:
+    image: front-end
+    container_name: "front-end"
+    restart: on-failure
+    environment:
+      - API_URL=back-end
+    build:
+      context: ./front-end/person
+      dockerfile: ./Dockerfile
+    depends_on:
+      - back-end
+    ports:
+      - 5000:80
+    networks:
+      - person-vue-network
+networks:
+  person-vue-network:
+    driver: bridge
