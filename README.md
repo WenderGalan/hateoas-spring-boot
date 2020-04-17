@@ -8,15 +8,31 @@ This API is designed for study using various tools and dependencies to enhance m
 
 To run the project you need to define the profile you will use to start the application, or just run the application with docker-compose.
 
-### Dependencies:
+### Dependencies (back-end):
   - #### [MAPSTRUCT](https://mapstruct.org/): Used to quickly create new DTOS.
   - #### [LOMBOK](https://projectlombok.org/): Used to prevent use of getters, setters, equals, and other standard methods on persistence entities.
   - #### SPRING SECURITY
   - #### JPA
   - #### SWAGGER UI: Used for RESTFUL API Documentation
-  - #### H2: Database for application
+  - #### H2: Database for application. Used as an in-memory database only.
   - #### [HATEOAS](https://spring.io/projects/spring-hateoas)
   - #### [JUNIT](https://junit.org/junit5/)
+  
+### Dependencies (front-end):
+  - #### [VUE](https://vuejs.org/): Framework web.
+  - #### [AXIOS](https://www.npmjs.com/package/axios): Used for asynchronous requests.
+  - #### [VUE-ROUTER](https://router.vuejs.org/): Used for navigation between SPA pages.
+  - #### [VUE-THE-MASK](https://vuejs-tips.github.io/vue-the-mask/): Used to create input masks.
+  - #### [VUETIFY](https://vuetifyjs.com/): Used to make the application with a different design.
+  
+### Continuous integration 
+  - #### [TRAVIS CI](https://travis-ci.org/WenderGalan/person-vue-spring-boot.svg?branch=master)
+
+### Deploy
+  - #### [FRONT-END](https://person-vue-spring-boot.netlify.app/) - [NETLIFY](https://www.netlify.com/)
+  - #### [BACK-END](https://person-vue-spring-boot.herokuapp.com/) - [HEROKU](https://dashboard.heroku.com/)
+    - ##### Default login to api: 'personapi'
+    - ##### Default password to api: 'passworddefault'
   
  ## License
 ```
